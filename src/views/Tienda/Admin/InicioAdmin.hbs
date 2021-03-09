@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+    <title>Dashboard Template for Bootstrap</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dashboard.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/Tienda/Section-Admin!Express">Centro de Administrador <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Tienda/">Salir</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="/Tienda/Section-Admin!Express">
+                  <span data-feather="home"></span>Inicio <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Tienda/Section-Admin!Express!MediosDePago">
+                  <span data-feather="file"></span>Medios de Pago
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Tienda/Section-Admin!Express!Productos">
+                  <span data-feather="shopping-cart"></span>Productos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Tienda/Section-Admin!Express!Cliente">
+                  <span data-feather="users"></span>Clientes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>Ventas
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Bienvenido a la parte del Administrador</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary">Wenas</button>
+                <button class="btn btn-sm btn-outline-secondary">k hace</button>
+              </div>
+            </div>
+          </div>
+          <br><h2>Cambios Recientes</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Cambio</th>
+                  <th>Fecha</th>
+                  <th>Eliminar</th>
+                  <th>Modificar</th>
+                  <th>Modificado por</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each Productos}}
+                    <tr>
+                        <td>{{nombre}}</td>
+                        <td>{{cambio}}</td>
+                        <td>{{fecha}}</td>
+                        <td><a href="/Tienda/Section-Admin!Express!EliminarCambios/{{id_cambios}}" >Eliminar</a></td>
+                        <td><!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{id_cambios}}">
+                                Modificar
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{id_cambios}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modificar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <form action="/Tienda/Section-Admin!Express!ModificaCambios/{{id_cambios}}" method="post">
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10">
+                                                            <input type="hidden" name="nombre" class="form-control" id="colFormLabel" placeholder="col-form-label" value="{{nombre}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="colFormLabel" class="col-sm-2 col-form-label">Cambio</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="cambio" class="form-control" id="colFormLabel" placeholder="col-form-label" value="{{cambio}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="colFormLabel" class="col-sm-2 col-form-label">Fecha</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="fecha" class="form-control" id="colFormLabel" placeholder="col-form-label" value="{{fecha}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10">
+                                                            <input type="hidden" name="modificado" class="form-control" id="colFormLabel" placeholder="col-form-label" value="Modificado">
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                    <button type="submit" class="btn btn-primary">si</button>
+                                                </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                        <td>{{modificado}}</td>
+                    </tr>
+                {{/each}}
+              </tbody>
+            </table><br><br>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/Tienda/Section-Admin!Express!AgregaCambios" method="post">
+                            <h4 class="card-title">Agregar Cambios</h4><br>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Admin</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Null</option>
+                                        {{#each Productos}}
+                                            <option name="nombre" value="{{nombre}}">{{nombre}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Cambios</label>
+                                <div class="col-sm-10">
+                                    <textarea name="cambio" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Fecha</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="fecha" class="form-control" id="inputPassword">
+                                    <input type="hidden" name="modificado" value="Sin modificar">
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button class="btn btn-primary" type="submit">Ingresar Cambios</button>
+                            </div>
+                        </form>         
+                    </div>
+                </div>
+            </div>
+          </div>
+            <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+            <script>
+                feather.replace()
+            </script>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
